@@ -3,9 +3,10 @@ import {
   deepClone,
   isObject,
   isFunction,
+  isString,
   defineUnEnumerable
 } from './utils'
-import { ALLOW_TAGS, ATTR_PROPS } from './constants'
+import { ALLOW_TAGS, ATTR_PROPS, EL_RADIO } from './constants'
 
 // 初始化数据对象
 const makeDataObject = () => {
@@ -33,18 +34,15 @@ const removeKey = (obj, key) => {
 }
 
 // 处理 v-model
-const vModelBind = (
-  dataObject,
-  {
-    props,
-    data: {
+const vModelBind = (dataObject, _VModel_, { props, data }) => {
+  if (_VModel_) {
+    const {
       on: { _model_change_ }
+    } = data
+    dataObject.props.value = props._value_
+    dataObject.on.input = (...vals) => {
+      _model_change_(...vals)
     }
-  }
-) => {
-  dataObject.props.value = props._value_
-  dataObject.on.input = (...vals) => {
-    _model_change_(...vals)
   }
 }
 
@@ -74,12 +72,12 @@ const dataObjectBind = (dataObject, config) => {
 }
 
 // 处理事件
-const eventHandle = (dataObject, { on }) => {
+const eventHandle = (dataObject, { on, _VModel_ }) => {
   const events = on || {}
   Object.keys(events).forEach((eventName) => {
     const func = events[eventName]
     if (isFunction(func)) {
-      if (eventName === 'input' && dataObject.on.input) {
+      if (_VModel_ && eventName === 'input') {
         const onFunc = dataObject.on.input
         dataObject.on.input = (...vals) => {
           onFunc(...vals)
@@ -104,6 +102,17 @@ const propsHandle = (dataObject, { props, _tag_ }) => {
   })
 }
 
+const childrenHandle = (h, config) => {
+  const { _tag_, text } = config
+  const children = []
+  switch (_tag_) {
+    case EL_RADIO:
+      if (isString(text)) children.push(text)
+      break
+  }
+  return children
+}
+
 export default {
   functional: true,
 
@@ -126,15 +135,21 @@ export default {
     if (!ALLOW_TAGS.includes(tag)) {
       return h('div', 'no matched tag')
     }
+    // 已绑定 v-model
+    if (cloneConfig.vModel) {
+      defineUnEnumerable(cloneConfig, '_VModel_', true)
+      removeKey(cloneConfig, 'vModel')
+    }
     removeKey(cloneConfig, 'type')
     defineUnEnumerable(cloneConfig, '_tag_', tag)
     // 初始化数据对象
     const dataObject = makeDataObject()
     // 绑定 v-model
-    vModelBind(dataObject, context)
+    vModelBind(dataObject, cloneConfig._VModel_, context)
     // 处理数据对象
     dataObjectBind(dataObject, cloneConfig)
-
-    return h(tag, dataObject)
+    // 处理子元素节点
+    const children = childrenHandle(h, cloneConfig)
+    return h(tag, dataObject, children)
   }
 }

@@ -7,6 +7,8 @@ export const isObject = (val) => is(val, 'Object')
 
 export const isFunction = (val) => is(val, 'Function')
 
+export const isString = (val) => typeof val === 'string'
+
 export const defineUnEnumerable = (obj, key, value) => {
   Object.defineProperty(obj, key, {
     value,
