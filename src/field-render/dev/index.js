@@ -1,7 +1,7 @@
 import Vue from 'vue'
-import { Button, Input, Radio } from 'element-ui'
+import { Button, Input, Radio, RadioGroup } from 'element-ui'
 import Dev from './dev.vue'
-Vue.use(Button).use(Input).use(Radio)
+Vue.use(Button).use(Input).use(Radio).use(RadioGroup)
 
 new Vue({
   el: '#app',

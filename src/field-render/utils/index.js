@@ -9,6 +9,15 @@ export const isFunction = (val) => is(val, 'Function')
 
 export const isString = (val) => typeof val === 'string'
 
+export const isArray = (val) => Array.isArray(val)
+
+export const hasOwnProperty = (obj, key) =>
+  Object.prototype.hasOwnProperty.call(obj, key)
+
+export const removeKey = (obj, key) => {
+  if (hasOwnProperty(obj, key)) delete obj[key]
+}
+
 export const defineUnEnumerable = (obj, key, value) => {
   Object.defineProperty(obj, key, {
     value,

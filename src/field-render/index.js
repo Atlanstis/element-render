@@ -4,9 +4,12 @@ import {
   isObject,
   isFunction,
   isString,
+  isArray,
+  removeKey,
+  hasOwnProperty,
   defineUnEnumerable
 } from './utils'
-import { ALLOW_TAGS, ATTR_PROPS, EL_RADIO } from './constants'
+import { ALLOW_TAGS, ATTR_PROPS } from './constants'
 
 // 初始化数据对象
 const makeDataObject = () => {
@@ -29,12 +32,10 @@ const makeDataObject = () => {
   }
 }
 
-const removeKey = (obj, key) => {
-  delete obj[key]
-}
-
 // 处理 v-model
-const vModelBind = (dataObject, _VModel_, { props, data }) => {
+const vModelBind = (dataObject, _VModel_, context) => {
+  if (!context) return
+  const { props, data } = context
   if (_VModel_) {
     const {
       on: { _model_change_ }
@@ -102,17 +103,6 @@ const propsHandle = (dataObject, { props, _tag_ }) => {
   })
 }
 
-const childrenHandle = (h, config) => {
-  const { _tag_, text } = config
-  const children = []
-  switch (_tag_) {
-    case EL_RADIO:
-      if (isString(text)) children.push(text)
-      break
-  }
-  return children
-}
-
 export default {
   functional: true,
 
@@ -131,25 +121,62 @@ export default {
 
   render: function (h, context) {
     const cloneConfig = deepClone(context.props.config)
-    const tag = transferToElTag(cloneConfig.type)
-    if (!ALLOW_TAGS.includes(tag)) {
-      return h('div', 'no matched tag')
+    const { tag, dataObject, childrenVnodes } = configAnalysis(
+      h,
+      cloneConfig,
+      context
+    )
+    if (!tag) {
+      return h('div', 'no matched component')
     }
-    // 已绑定 v-model
-    if (cloneConfig.vModel) {
-      defineUnEnumerable(cloneConfig, '_VModel_', true)
-      removeKey(cloneConfig, 'vModel')
-    }
-    removeKey(cloneConfig, 'type')
-    defineUnEnumerable(cloneConfig, '_tag_', tag)
-    // 初始化数据对象
-    const dataObject = makeDataObject()
-    // 绑定 v-model
-    vModelBind(dataObject, cloneConfig._VModel_, context)
-    // 处理数据对象
-    dataObjectBind(dataObject, cloneConfig)
-    // 处理子元素节点
-    const children = childrenHandle(h, cloneConfig)
-    return h(tag, dataObject, children)
+    return h(tag, dataObject, childrenVnodes)
   }
+}
+
+// 解析配置
+const configAnalysis = (h, config, context) => {
+  const tag = transferToElTag(config.type)
+  if (!ALLOW_TAGS.includes(tag)) return {}
+  removeKey(config, 'type')
+  defineUnEnumerable(config, '_tag_', tag)
+  // 如果配置中属性 vModel 为 true，添加 v-model 标记
+  if (config.vModel) {
+    defineUnEnumerable(config, '_VModel_', true)
+    removeKey(config, 'vModel')
+  }
+  // 处理子元素节点
+  const childrenVnodes = childrenVNodeAnalysis(h, config)
+  // 初始化数据对象
+  const dataObject = makeDataObject()
+  // 绑定 v-model
+  vModelBind(dataObject, config._VModel_, context)
+  // 处理数据对象
+  dataObjectBind(dataObject, config)
+  return {
+    tag,
+    childrenVnodes,
+    dataObject
+  }
+}
+
+// 解析子元素
+const childrenVNodeAnalysis = (h, config) => {
+  const vnodes = []
+  if (hasOwnProperty(config, 'text')) {
+    const { text } = config
+    removeKey(config, 'text')
+    if (isString(text)) vnodes.push(text)
+  } else if (hasOwnProperty(config, 'children')) {
+    const { children } = config
+    if (!isArray(children)) return []
+    removeKey(config, 'children')
+    for (let i = 0, length = children.length; i < length; i++) {
+      const childConfig = children[i]
+      if (!isObject(childConfig)) break
+      const { tag, dataObject, childrenVnodes } = configAnalysis(h, childConfig)
+      if (!tag) break
+      vnodes.push(h(tag, dataObject, childrenVnodes))
+    }
+  }
+  return vnodes
 }
