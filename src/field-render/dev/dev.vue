@@ -13,14 +13,28 @@ export default {
   data() {
     return {
       config: {
-        type: 'rate',
+        type: 'input',
         vModel: true,
         props: {
-          'show-text': true,
-          texts: ['一', '二', '三', '四', '五']
+          placeholder: 'xxxx'
+        },
+        attrs: {
+          placeholder: 'dfsdf'
+        },
+        children: [
+          {
+            tag: 'template',
+            slot: 'prepend',
+            text: 'Http://'
+          }
+        ],
+        on: {
+          change: (val) => {
+            console.log(`change: ${val}`)
+          }
         }
       },
-      value: null
+      value: '222'
     }
   }
 }

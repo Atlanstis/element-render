@@ -1,5 +1,6 @@
 import {
   transferToElTag,
+  isElTag,
   deepClone,
   isObject,
   isFunction,
@@ -9,7 +10,7 @@ import {
   hasOwnProperty,
   defineUnEnumerable
 } from './utils'
-import { ALLOW_TAGS, ATTR_PROPS } from './constants'
+import { ATTR_PROPS } from './constants'
 
 // 初始化数据对象
 const makeDataObject = () => {
@@ -50,6 +51,9 @@ const vModelBind = (dataObject, _VModel_, context) => {
 // 处理数据对象
 const dataObjectBind = (dataObject, config) => {
   if (!isObject(config)) return
+  if (!isElTag(config._tag_)) {
+    removeKey(dataObject, 'nativeOn')
+  }
   Object.keys(config).forEach((key) => {
     switch (key) {
       case 'class':
@@ -58,6 +62,9 @@ const dataObjectBind = (dataObject, config) => {
         break
       case 'props':
         propsHandle(dataObject, config)
+        break
+      case 'attrs':
+        attrsHandle(dataObject, config)
         break
       case 'on':
         // case 'nativeOn':
@@ -103,6 +110,15 @@ const propsHandle = (dataObject, { props, _tag_ }) => {
   })
 }
 
+const attrsHandle = (dataObject, { attrs }) => {
+  if (!isObject(attrs)) return
+  Object.keys(attrs).forEach((key) => {
+    if (!hasOwnProperty(dataObject.attrs, key)) {
+      dataObject.attrs[key] = attrs[key]
+    }
+  })
+}
+
 const scopedSlotsBind = (dataObject, config, h) => {
   if (isFunction(config.scopedSlots)) {
     dataObject.scopedSlots = config.scopedSlots(h)
@@ -143,14 +159,10 @@ export default {
 // 解析配置
 const configAnalysis = (h, config, context) => {
   let tag = transferToElTag(config.type)
-  const isElTag = ALLOW_TAGS.includes(tag)
-  if (!isElTag) {
-    if (hasOwnProperty(config, 'tag') && isString(tag)) {
-      tag = config.tag
-    } else {
-      return {}
-    }
+  if (hasOwnProperty(config, 'tag') && isString(tag)) {
+    tag = config.tag
   }
+  if (!tag) return {}
   removeKey(config, 'type')
   defineUnEnumerable(config, '_tag_', tag)
   // 如果配置中属性 vModel 为 true，添加 v-model 标记

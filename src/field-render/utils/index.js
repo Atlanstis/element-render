@@ -1,4 +1,9 @@
-export const transferToElTag = (tag) => `el-${tag}`
+export const transferToElTag = (tag) => {
+  if (!tag) return ''
+  return `el-${tag}`
+}
+
+export const isElTag = (tag) => tag.startsWith('el-')
 
 export const is = (val, type) =>
   Object.prototype.toString.call(val) === `[object ${type}]`
