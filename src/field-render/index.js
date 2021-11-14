@@ -135,8 +135,15 @@ export default {
 
 // 解析配置
 const configAnalysis = (h, config, context) => {
-  const tag = transferToElTag(config.type)
-  if (!ALLOW_TAGS.includes(tag)) return {}
+  let tag = transferToElTag(config.type)
+  const isElTag = ALLOW_TAGS.includes(tag)
+  if (!isElTag) {
+    if (hasOwnProperty(config, 'tag') && isString(tag)) {
+      tag = config.tag
+    } else {
+      return {}
+    }
+  }
   removeKey(config, 'type')
   defineUnEnumerable(config, '_tag_', tag)
   // 如果配置中属性 vModel 为 true，添加 v-model 标记
