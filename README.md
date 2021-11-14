@@ -1,3 +1,16 @@
+### slider
+
+```js
+{
+  type: 'slider',
+    vModel: true,
+      props: {
+        mix: 0,
+          max: 100
+      }
+}
+```
+
 ### switch
 
 ```js

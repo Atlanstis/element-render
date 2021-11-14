@@ -13,14 +13,14 @@ export default {
   data() {
     return {
       config: {
-        type: 'switch',
+        type: 'slider',
         vModel: true,
         props: {
-          'active-color': '#13ce66',
-          'inactive-color': '#ff4949'
+          mix: 0,
+          max: 100
         }
       },
-      value: true
+      value: 33
     }
   }
 }

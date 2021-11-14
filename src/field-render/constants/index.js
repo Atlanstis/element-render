@@ -8,6 +8,7 @@ const EL_CHECKBOX_BUTTON = 'el-checkbox-button'
 const EL_INPUT_NUMBER = 'el-input-number'
 const EL_CASCADER = 'el-cascader'
 const EL_SWITCH = 'el-switch'
+const EL_SLIDER = 'el-slider'
 
 export const ALLOW_TAGS = [
   EL_INPUT,
@@ -19,7 +20,8 @@ export const ALLOW_TAGS = [
   EL_CHECKBOX_BUTTON,
   EL_INPUT_NUMBER,
   EL_CASCADER,
-  EL_SWITCH
+  EL_SWITCH,
+  EL_SLIDER
 ]
 
 export const ALLOW_SIZE = [

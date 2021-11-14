@@ -10,7 +10,8 @@ import {
   CheckboxButton,
   InputNumber,
   Cascader,
-  Switch
+  Switch,
+  Slider
 } from 'element-ui'
 
 import Dev from './dev.vue'
@@ -26,6 +27,7 @@ Vue.use(Button)
   .use(InputNumber)
   .use(Cascader)
   .use(Switch)
+  .use(Slider)
 new Vue({
   el: '#app',
   render: (h) => h(Dev)
