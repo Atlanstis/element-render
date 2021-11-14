@@ -1,3 +1,16 @@
+### rate
+
+```js
+{
+  type: 'rate',
+    vModel: true,
+      props: {
+        'show-text': true,
+          texts: ['一', '二', '三', '四', '五']
+      }
+}
+```
+
 ### date-picker
 
 ```js

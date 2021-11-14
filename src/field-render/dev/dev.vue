@@ -13,15 +13,14 @@ export default {
   data() {
     return {
       config: {
-        type: 'date-picker',
+        type: 'rate',
         vModel: true,
         props: {
-          placeholder: '请选择时间',
-          type: 'date',
-          size: 'small'
+          'show-text': true,
+          texts: ['一', '二', '三', '四', '五']
         }
       },
-      value: ''
+      value: null
     }
   }
 }

@@ -14,7 +14,8 @@ import {
   Slider,
   TimeSelect,
   TimePicker,
-  DatePicker
+  DatePicker,
+  Rate
 } from 'element-ui'
 
 import Dev from './dev.vue'
@@ -34,6 +35,7 @@ Vue.use(Button)
   .use(TimeSelect)
   .use(TimePicker)
   .use(DatePicker)
+  .use(Rate)
 
 new Vue({
   el: '#app',

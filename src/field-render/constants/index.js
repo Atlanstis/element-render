@@ -12,6 +12,7 @@ const EL_SLIDER = 'el-slider'
 const EL_TIME_SELECT = 'el-time-select'
 const EL_TIME_PICKER = 'el-time-picker'
 const EL_DATE_PICKER = 'el-date-picker'
+const EL_RATE = 'el-rate'
 
 export const ALLOW_TAGS = [
   EL_INPUT,
@@ -27,7 +28,8 @@ export const ALLOW_TAGS = [
   EL_SLIDER,
   EL_TIME_SELECT,
   EL_TIME_PICKER,
-  EL_DATE_PICKER
+  EL_DATE_PICKER,
+  EL_RATE
 ]
 
 export const ALLOW_SIZE = [
