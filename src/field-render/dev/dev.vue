@@ -13,13 +13,22 @@ export default {
   data() {
     return {
       config: {
-        type: 'input',
+        type: 'radio-group',
         vModel: true,
         children: [
           {
-            tag: 'template',
-            slot: 'prepend',
-            text: 'Http://'
+            type: 'radio-button',
+            text: '222',
+            props: {
+              label: 2
+            }
+          },
+          {
+            type: 'radio-button',
+            text: '333',
+            props: {
+              label: 3
+            }
           }
         ],
         on: {

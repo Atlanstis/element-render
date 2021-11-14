@@ -1,6 +1,6 @@
 ### radio-group
 
-```json
+```js
 {
   type: 'radio-group',
   vModel: true,
@@ -26,11 +26,37 @@
     }
   }
 }
+// radio-button
+{
+  type: 'radio-group',
+    vModel: true,
+      children: [
+        {
+          type: 'radio-button',
+          text: '222',
+          props: {
+            label: 2
+          }
+        },
+        {
+          type: 'radio-button',
+          text: '333',
+          props: {
+            label: 3
+          }
+        }
+      ],
+        on: {
+          change: (val) => {
+            console.log(`change: ${val}`)
+          }
+        }
+}
 ```
 
 ### input
 
-```json
+```js
 // slot
 {
   type: 'input',
@@ -49,4 +75,3 @@
   }
 }
 ```
-
