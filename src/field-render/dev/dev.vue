@@ -13,31 +13,19 @@ export default {
   data() {
     return {
       config: {
-        type: 'checkbox-group',
+        type: 'input-number',
         vModel: true,
-        children: [
-          {
-            type: 'checkbox-button',
-            props: {
-              label: 'a'
-            },
-            text: 'A'
-          },
-          {
-            type: 'checkbox-button',
-            props: {
-              label: 'b'
-            },
-            text: 'B'
-          }
-        ],
+        props: {
+          min: 1,
+          max: 10
+        },
         on: {
           change: (val) => {
             console.log(`change: ${val}`)
           }
         }
       },
-      value: ['a', 'b']
+      value: 3
     }
   }
 }

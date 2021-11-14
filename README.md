@@ -1,3 +1,23 @@
+### input-number
+
+```js
+{
+  type: 'input-number',
+    vModel: true,
+      props: {
+        min: 1,
+          max: 10
+      },
+        on: {
+          change: (val) => {
+            console.log(`change: ${val}`)
+          }
+        }
+}
+```
+
+
+
 ### checkbox-group
 
 ```js
