@@ -9,7 +9,8 @@ import {
   CheckboxGroup,
   CheckboxButton,
   InputNumber,
-  Cascader
+  Cascader,
+  Switch
 } from 'element-ui'
 
 import Dev from './dev.vue'
@@ -24,7 +25,7 @@ Vue.use(Button)
   .use(CheckboxButton)
   .use(InputNumber)
   .use(Cascader)
-
+  .use(Switch)
 new Vue({
   el: '#app',
   render: (h) => h(Dev)

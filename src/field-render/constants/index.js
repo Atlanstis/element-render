@@ -7,6 +7,7 @@ const EL_CHECKBOX_GROUP = 'el-checkbox-group'
 const EL_CHECKBOX_BUTTON = 'el-checkbox-button'
 const EL_INPUT_NUMBER = 'el-input-number'
 const EL_CASCADER = 'el-cascader'
+const EL_SWITCH = 'el-switch'
 
 export const ALLOW_TAGS = [
   EL_INPUT,
@@ -17,7 +18,8 @@ export const ALLOW_TAGS = [
   EL_CHECKBOX_GROUP,
   EL_CHECKBOX_BUTTON,
   EL_INPUT_NUMBER,
-  EL_CASCADER
+  EL_CASCADER,
+  EL_SWITCH
 ]
 
 export const ALLOW_SIZE = [
@@ -26,7 +28,8 @@ export const ALLOW_SIZE = [
   EL_RADIO_GROUP,
   EL_CHECKBOX,
   EL_CHECKBOX_GROUP,
-  EL_INPUT_NUMBER
+  EL_INPUT_NUMBER,
+  EL_CASCADER
 ]
 
 // 原生属性列表

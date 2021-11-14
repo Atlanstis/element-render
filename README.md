@@ -1,3 +1,16 @@
+### switch
+
+```js
+{
+  type: 'switch',
+    vModel: true,
+      props: {
+        'active-color': '#13ce66',
+          'inactive-color': '#ff4949'
+      }
+}
+```
+
 ### cascader
 
 ```js
