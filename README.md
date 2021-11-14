@@ -1,3 +1,51 @@
+### checkbox-group
+
+```js
+{
+  type: 'checkbox-group',
+    vModel: true,
+      children: [
+        {
+          type: 'checkbox-button',
+          props: {
+            label: 'a'
+          },
+          text: 'A'
+        },
+        {
+          type: 'checkbox-button',
+          props: {
+            label: 'b'
+          },
+          text: 'B'
+        }
+      ],
+        on: {
+          change: (val) => {
+            console.log(`change: ${val}`)
+          }
+        }
+}
+```
+
+### checkbox
+
+```js
+{
+  type: 'checkbox',
+    vModel: true,
+      text: '测试',
+        props: {
+          disabled: true
+        },
+          on: {
+            change: (val) => {
+              console.log(`change: ${val}`)
+            }
+          }
+}
+```
+
 ### radio-group
 
 ```js

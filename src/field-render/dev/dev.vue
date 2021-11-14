@@ -13,22 +13,22 @@ export default {
   data() {
     return {
       config: {
-        type: 'radio-group',
+        type: 'checkbox-group',
         vModel: true,
         children: [
           {
-            type: 'radio-button',
-            text: '222',
+            type: 'checkbox-button',
             props: {
-              label: 2
-            }
+              label: 'a'
+            },
+            text: 'A'
           },
           {
-            type: 'radio-button',
-            text: '333',
+            type: 'checkbox-button',
             props: {
-              label: 3
-            }
+              label: 'b'
+            },
+            text: 'B'
           }
         ],
         on: {
@@ -37,7 +37,7 @@ export default {
           }
         }
       },
-      value: 2
+      value: ['a', 'b']
     }
   }
 }
