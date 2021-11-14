@@ -13,15 +13,15 @@ export default {
   data() {
     return {
       config: {
-        type: 'time-select',
+        type: 'time-picker',
         vModel: true,
         props: {
           placeholder: '请选择时间',
           'picker-options': {
-            start: '8:30',
-            end: '18:00',
-            step: '00:15'
+            selectableRange: '18:30:00 - 20:30:00'
           },
+          'arrow-control': true,
+          'is-range': true,
           size: 'small'
         }
       },

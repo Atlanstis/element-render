@@ -1,3 +1,21 @@
+### Time-picker
+
+```js
+{
+  type: 'time-picker',
+    vModel: true,
+      props: {
+        placeholder: '请选择时间',
+          'picker-options': {
+            selectableRange: '18:30:00 - 20:30:00'
+          },
+            'arrow-control': true,
+              'is-range': true,
+                size: 'small'
+      }
+}
+```
+
 ### time-select
 
 ```js

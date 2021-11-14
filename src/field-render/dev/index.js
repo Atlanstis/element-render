@@ -12,7 +12,8 @@ import {
   Cascader,
   Switch,
   Slider,
-  TimeSelect
+  TimeSelect,
+  TimePicker
 } from 'element-ui'
 
 import Dev from './dev.vue'
@@ -30,6 +31,8 @@ Vue.use(Button)
   .use(Switch)
   .use(Slider)
   .use(TimeSelect)
+  .use(TimePicker)
+
 new Vue({
   el: '#app',
   render: (h) => h(Dev)
