@@ -1,3 +1,17 @@
+### date-picker
+
+```js
+{
+  type: 'date-picker',
+    vModel: true,
+      props: {
+        placeholder: '请选择时间',
+          type: 'date',
+            size: 'small'
+      }
+}
+```
+
 ### Time-picker
 
 ```js

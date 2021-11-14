@@ -11,6 +11,7 @@ const EL_SWITCH = 'el-switch'
 const EL_SLIDER = 'el-slider'
 const EL_TIME_SELECT = 'el-time-select'
 const EL_TIME_PICKER = 'el-time-picker'
+const EL_DATE_PICKER = 'el-date-picker'
 
 export const ALLOW_TAGS = [
   EL_INPUT,
@@ -25,7 +26,8 @@ export const ALLOW_TAGS = [
   EL_SWITCH,
   EL_SLIDER,
   EL_TIME_SELECT,
-  EL_TIME_PICKER
+  EL_TIME_PICKER,
+  EL_DATE_PICKER
 ]
 
 export const ALLOW_SIZE = [
@@ -37,7 +39,8 @@ export const ALLOW_SIZE = [
   EL_INPUT_NUMBER,
   EL_CASCADER,
   EL_TIME_SELECT,
-  EL_TIME_PICKER
+  EL_TIME_PICKER,
+  EL_DATE_PICKER
 ]
 
 // 原生属性列表
