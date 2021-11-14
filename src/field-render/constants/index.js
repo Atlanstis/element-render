@@ -6,6 +6,7 @@ const EL_CHECKBOX = 'el-checkbox'
 const EL_CHECKBOX_GROUP = 'el-checkbox-group'
 const EL_CHECKBOX_BUTTON = 'el-checkbox-button'
 const EL_INPUT_NUMBER = 'el-input-number'
+const EL_CASCADER = 'el-cascader'
 
 export const ALLOW_TAGS = [
   EL_INPUT,
@@ -15,7 +16,8 @@ export const ALLOW_TAGS = [
   EL_CHECKBOX,
   EL_CHECKBOX_GROUP,
   EL_CHECKBOX_BUTTON,
-  EL_INPUT_NUMBER
+  EL_INPUT_NUMBER,
+  EL_CASCADER
 ]
 
 export const ALLOW_SIZE = [

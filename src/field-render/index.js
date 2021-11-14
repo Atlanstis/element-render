@@ -103,6 +103,13 @@ const propsHandle = (dataObject, { props, _tag_ }) => {
   })
 }
 
+const scopedSlotsBind = (dataObject, config, h) => {
+  if (isFunction(config.scopedSlots)) {
+    dataObject.scopedSlots = config.scopedSlots(h)
+  }
+  removeKey(config, 'scopedSlots')
+}
+
 export default {
   functional: true,
 
@@ -155,6 +162,8 @@ const configAnalysis = (h, config, context) => {
   const childrenVnodes = childrenVNodeAnalysis(h, config)
   // 初始化数据对象
   const dataObject = makeDataObject()
+  // 处理 scopedSlots，处理较为生硬，有待优化
+  scopedSlotsBind(dataObject, config, h)
   // 绑定 v-model
   vModelBind(dataObject, config._VModel_, context)
   // 处理数据对象
