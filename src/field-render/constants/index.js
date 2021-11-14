@@ -9,6 +9,7 @@ const EL_INPUT_NUMBER = 'el-input-number'
 const EL_CASCADER = 'el-cascader'
 const EL_SWITCH = 'el-switch'
 const EL_SLIDER = 'el-slider'
+const EL_TIME_SELECT = 'el-time-select'
 
 export const ALLOW_TAGS = [
   EL_INPUT,
@@ -21,7 +22,8 @@ export const ALLOW_TAGS = [
   EL_INPUT_NUMBER,
   EL_CASCADER,
   EL_SWITCH,
-  EL_SLIDER
+  EL_SLIDER,
+  EL_TIME_SELECT
 ]
 
 export const ALLOW_SIZE = [
@@ -31,7 +33,8 @@ export const ALLOW_SIZE = [
   EL_CHECKBOX,
   EL_CHECKBOX_GROUP,
   EL_INPUT_NUMBER,
-  EL_CASCADER
+  EL_CASCADER,
+  EL_TIME_SELECT
 ]
 
 // 原生属性列表

@@ -13,14 +13,19 @@ export default {
   data() {
     return {
       config: {
-        type: 'slider',
+        type: 'time-select',
         vModel: true,
         props: {
-          mix: 0,
-          max: 100
+          placeholder: '请选择时间',
+          'picker-options': {
+            start: '8:30',
+            end: '18:00',
+            step: '00:15'
+          },
+          size: 'small'
         }
       },
-      value: 33
+      value: ''
     }
   }
 }

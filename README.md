@@ -1,3 +1,21 @@
+### time-select
+
+```js
+{
+  type: 'time-select',
+    vModel: true,
+      props: {
+        placeholder: '请选择时间',
+          'picker-options': {
+            start: '8:30',
+              end: '18:00',
+                step: '00:15'
+          },
+            size: 'small'
+      }
+}
+```
+
 ### slider
 
 ```js
