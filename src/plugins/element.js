@@ -18,8 +18,6 @@ import {
   Rate
 } from 'element-ui'
 
-import Dev from './dev.vue'
-
 Vue.use(Button)
   .use(Input)
   .use(Radio)
@@ -36,8 +34,3 @@ Vue.use(Button)
   .use(TimePicker)
   .use(DatePicker)
   .use(Rate)
-
-new Vue({
-  el: '#app',
-  render: (h) => h(Dev)
-})

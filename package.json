@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev:field-render": "vue serve ./src/field-render/dev/index.js"
+    "dev:field-render": "vue serve ./src/field-render/wrap/index.js"
   },
   "dependencies": {
     "element-ui": "^2.4.5"
